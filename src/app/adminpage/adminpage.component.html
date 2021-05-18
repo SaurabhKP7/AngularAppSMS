@@ -1,0 +1,152 @@
+
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-success bg-gradient">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Admin Portal</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/app-home">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Student
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" routerLink="/app-studentregister">Add Student</a></li>
+              <li><a class="dropdown-item" routerLink="/app-studentlogin">Delete Student</a></li>
+              <li><a class="dropdown-item" routerLink="/app-studentregister">Update Student</a></li>
+              <li><a class="dropdown-item" routerLink="/app-studentlogin">Student List</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Course
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" routerLink="/app-studentregister">Add Course</a></li>
+                <li><a class="dropdown-item" routerLink="/app-studentlogin">Delete Course</a></li>
+                <li><a class="dropdown-item" routerLink="/app-studentregister">Update Course</a></li>
+                <li><a class="dropdown-item" routerLink="/app-studentlogin">Course List</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Teacher
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" routerLink="/app-studentregister">Add Teacher</a></li>
+                <li><a class="dropdown-item" routerLink="/app-studentlogin">Delete Teacher</a></li>
+                <li><a class="dropdown-item" routerLink="/app-studentregister">Update Teacher</a></li>
+                <li><a class="dropdown-item" routerLink="/app-studentlogin">Student Teacher</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Fee
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" routerLink="/app-studentregister">Add Fee</a></li>
+                <li><a class="dropdown-item" routerLink="/app-studentlogin">Delete Fee</a></li>
+                <li><a class="dropdown-item" routerLink="/app-studentregister">Update Fee</a></li>
+                <li><a class="dropdown-item" routerLink="/app-studentlogin">Fee List</a></li>
+            </ul>
+          </li>
+          
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search Courses" aria-label="Search">
+          <button class="btn btn-success">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-success bg-gradient">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <span class="fs-5 d-none d-sm-inline">Menu</span>
+                </a>
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                    <li class="nav-item">
+                        <a href="/home" class="nav-link align-middle px-0">
+                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline text-white">Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline text-white">Sub Menu</span> </a>
+                        <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <a href="/emplist" class="nav-link px-0"> <span class="d-none d-sm-inline text-white">1. Employee List</span></a>
+                            </li>
+                            <li class="w-100">
+                              <a href="/empnamelist" class="nav-link px-0"> <span class="d-none d-sm-inline text-white">2. Employee Names</span></a>
+                          </li>
+  
+                            <li>
+                                <a href="/aboutus" class="nav-link px-0"> <span class="d-none d-sm-inline text-white">3. About Us</span></a>
+                            </li>
+                            <li>
+                              <a href="/empcreate" class="nav-link px-0"> <span class="d-none d-sm-inline text-white">4. Add Employee</span></a>
+                          </li>
+                            <li>
+                              <a href="/contactus" class="nav-link px-0"> <span class="d-none d-sm-inline text-white">5. Contact Us</span></a>
+                          </li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+                <hr>
+               
+            </div>
+        </div>
+        <div class="col py-3" style="margin-top: 10rem;">
+            <div class="row m-3 mt-5">
+                <div class="col-xl-6">
+                    <div class="card border-left-primary bg-success bg-gradient shadow h-100 py-2" data-bs-toggle="modal" data-bs-target="#courseDetailsModal">
+                        <div class="card-body text-center">
+                           
+                                <h2 class="text-white">Student</h2>
+                           
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-xl-6">
+                    <div class="card border-left-primary bg-success bg-gradient shadow h-100 py-2" data-bs-toggle="modal" data-bs-target="#courseDetailsModal">
+                        <div class="card-body text-center">
+                            <h2 class="text-white">Course</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row m-3">
+                <div class="col-xl-6">
+                    <div class="card border-left-primary bg-success bg-gradient shadow h-100 py-2" data-bs-toggle="modal" data-bs-target="#courseDetailsModal">
+                        <div class="card-body text-center">
+                            <h2 class="text-white">Teacher</h2>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-xl-6">
+                    <div class="card border-left-primary bg-success bg-gradient shadow h-100 py-2" data-bs-toggle="modal" data-bs-target="#courseDetailsModal">
+                        <div class="card-body text-center">
+                            <h2 class="text-white">Fee</h2>
+                        </div>
+                    </div>
+                </div>
+            
+                
+            </div>
+        </div>
+    </div>
+  </div>
+

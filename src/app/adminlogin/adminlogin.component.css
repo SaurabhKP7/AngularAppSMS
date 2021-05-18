@@ -1,0 +1,10 @@
+.social_icon span{
+    font-size: 40px;
+    margin-left: 10px;
+    color: lightyellow;
+}
+
+.social_icon span:hover{
+    color: white;
+    cursor: pointer;
+}
