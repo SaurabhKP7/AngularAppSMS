@@ -1,7 +1,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-success bg-gradient">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Student Portal</a>
+      <a class="navbar-brand" href="#">SMS Portal</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -18,7 +18,7 @@
               Student
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" routerLink="/app-studentregister">Student Register</a></li>
+              <li><a class="dropdown-item" routerLink="/app-studentregister">Register for Course</a></li>
               <li><a class="dropdown-item" routerLink="/app-studentlogin">Student Login</a></li>
             </ul>
           </li>
@@ -66,18 +66,18 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="courseDetailsModalLabel">Core Java</h5>
+          <h5 class="modal-title" id="courseDetailsModalLabel">{{courseForModal.courseName}}</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div class="col">
-            Java is a high-level, class-based, object-oriented programming language that is 
+            Details to be Decided SOON, class-based, object-oriented programming language that is 
             designed to have as few implementation dependencies as possible.
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-success" routerLink="/app-studentregister" data-bs-dismiss="modal">Register</button>
+          <button type="button" class="btn btn-success" routerLink="/app-studentregister/{{courseForModal.courseId}}" data-bs-dismiss="modal">Register</button>
         </div>
       </div>
     </div>
@@ -89,8 +89,27 @@
     <h2 class="text-success">Courses Offered</h2>
 </div>
 <div class="row">
+    <div class="col-xl-3 m-4" *ngFor="let c of courses" (click)="valueToModal(c)" data-bs-toggle="modal" data-bs-target="#courseDetailsModal" >
+        <div class="card border-left-primary shadow h-100 py-2" >
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs text-success text-uppercase mb-1">
+                            {{c.courseName}}</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">Rs. {{c.fee.feeAmount}}</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-coffee fa-2x text-success"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="row">
     <div class="col-xl-3 m-4">
-        <div class="card border-left-primary shadow h-100 py-2" data-bs-toggle="modal" data-bs-target="#courseDetailsModal">
+        <div class="card border-left-primary shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
@@ -139,58 +158,5 @@
             </div>
         </div>
     </div>
-</div>
-
-<div class="row">
-    <div class="col-xl-3 m-4">
-        <div class="card border-left-primary shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs text-success text-uppercase mb-1">
-                            Core Java</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-coffee fa-2x text-success"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-xl-3 m-4">
-        <div class="card border-left-primary shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs text-success text-uppercase mb-1">
-                            SQL</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-calendar fa-2x text-success"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-xl-3 m-4">
-        <div class="card border-left-primary shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs text-success text-uppercase mb-1">
-                            Spring MVC</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-file-code fa-2x text-success"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+</div> -->
 

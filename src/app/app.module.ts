@@ -10,6 +10,7 @@ import { AdminloginComponent } from './adminlogin/adminlogin.component';
 import { HomeComponent } from './home/home.component';
 import { StudentregisterComponent } from './studentregister/studentregister.component';
 import { AdminpageComponent } from './adminpage/adminpage.component';
+import { StudentpageComponent } from './studentpage/studentpage.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AdminpageComponent } from './adminpage/adminpage.component';
     AdminloginComponent,
     HomeComponent,
     StudentregisterComponent,
-    AdminpageComponent
+    AdminpageComponent,
+    StudentpageComponent
   ],
   imports: [
     BrowserModule,

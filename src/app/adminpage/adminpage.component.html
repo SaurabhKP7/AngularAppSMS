@@ -16,8 +16,8 @@
               Student
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addStudentModal">Add Student</a></li>
-              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#listStudentModal">Student List</a></li>
+              <li><a class="dropdown-item" (click)="getStudents(); getCourses();" data-bs-toggle="modal" data-bs-target="#addStudentModal">Add Student</a></li>
+              <li><a class="dropdown-item" id="openStudentList" (click)="getStudents()" data-bs-toggle="modal" data-bs-target="#listStudentModal">Student List</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -25,8 +25,8 @@
               Course
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addCourseModal">Add Course</a></li>
-              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#listCourseModal">Course List</a></li>
+              <li><a class="dropdown-item" (click)="getTeachers(); getFees();" data-bs-toggle="modal" data-bs-target="#addCourseModal">Add Course</a></li>
+              <li><a class="dropdown-item" id="openCourseList" (click)="getCourses()" data-bs-toggle="modal" data-bs-target="#listCourseModal">Course List</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -44,7 +44,7 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addFeeModal">Add Fee</a></li>
-              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#listFeeModal">Fee List</a></li>
+              <li><a class="dropdown-item" id="openFeeList" (click)="getFees()" data-bs-toggle="modal" data-bs-target="#listFeeModal">Fee List</a></li>
             </ul>
           </li>
           
@@ -75,34 +75,34 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">First Name</span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Enter First Name">
+                                <input type="text" class="form-control" [(ngModel)]="studentDetails.firstname" name="firstname" placeholder="Enter First Name">
                                 
                             </div>
                             <div class="input-group form-group p-2">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Last Name</span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Enter Last Name">
+                                <input type="text" class="form-control" [(ngModel)]="studentDetails.lastname" name="lastname" placeholder="Enter Last Name">
                                 
                             </div>
                             <div class="input-group form-group p-2">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Age</span>
                                 </div>
-                                <input type="number" class="form-control" placeholder="Enter Age">
+                                <input type="number" class="form-control" [(ngModel)]="studentDetails.age" name="age" placeholder="Enter Age">
                                 
                             </div>
                             
                             <div class="input-group form-group p-2">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault1">
+                                    <input class="form-check-input" type="radio" [(ngModel)]="studentDetails.gender" value="Male" name="gender" id="flexRadioDefault1">
                                     <label class="form-check-label" for="flexRadioDefault1">
                                       Male
                                     </label>
                                 </div>
                                 <div class="form-check" style="margin-left: 1rem;">
-                                    <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault1">
-                                    <label class="form-check-label" for="flexRadioDefault1">
+                                    <input class="form-check-input" type="radio" [(ngModel)]="studentDetails.gender" value="Female" name="gender" id="flexRadioDefault2">
+                                    <label class="form-check-label" for="flexRadioDefault2">
                                       Female
                                     </label>
                                 </div>
@@ -113,7 +113,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Phone</span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Enter Phone Number">
+                                <input type="text" class="form-control" [(ngModel)]="studentDetails.phone" name="phone" placeholder="Enter Phone Number">
                                 
                             </div>
         
@@ -121,15 +121,21 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Email ID</span>
                                 </div>
-                                <input type="email" class="form-control" placeholder="Enter Mail Address">
+                                <input type="email" class="form-control" [(ngModel)]="studentDetails.email" name="email" placeholder="Enter Mail Address">
                                 
                             </div>
                             <div class="input-group form-group p-2">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Password</span>
                                 </div>
-                                <input type="password" class="form-control" placeholder="Enter Password">
+                                <input type="password" class="form-control" [(ngModel)]="studentDetails.password" name="password" placeholder="Enter Password">
                                 
+                            </div>
+                            <div class="input-group form-group p-2">
+                              <select  class="form-select" [(ngModel)]="studentDetails.course" name="courseId" aria-label="CourseSelect">
+                                <option selected [ngValue]="">Select a Course</option>
+                                <option *ngFor="let c of courses" [ngValue]="c">{{c.courseName}}</option>
+                              </select>
                             </div>
                         </form>
                     </div>
@@ -139,7 +145,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Add</button>
+          <button type="button" (click)="addStudent()" class="btn btn-success" data-bs-dismiss="modal">Add</button>
         </div>
       </div>
     </div>
@@ -164,40 +170,40 @@
                               <div class="input-group-prepend">
                                   <span class="input-group-text">Student ID</span>
                               </div>
-                              <input type="number" class="form-control" placeholder="Enter First Name">
+                              <input type="number" class="form-control" [(ngModel)]="student.studentId" name="studentId" placeholder="Enter First Name">
                             </div>
                             <div class="input-group form-group p-2">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">First Name</span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Enter First Name">
+                                <input type="text" class="form-control" [(ngModel)]="student.firstname" name="firstname" placeholder="Enter First Name">
                                 
                             </div>
                             <div class="input-group form-group p-2">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Last Name</span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Enter Last Name">
+                                <input type="text" class="form-control" [(ngModel)]="student.lastname" name="lastname" placeholder="Enter Last Name">
                                 
                             </div>
                             <div class="input-group form-group p-2">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Age</span>
                                 </div>
-                                <input type="number" class="form-control" placeholder="Enter Age">
+                                <input type="number" class="form-control" [(ngModel)]="student.age" name="age" placeholder="Enter Age">
                                 
                             </div>
                             
                             <div class="input-group form-group p-2">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault1">
+                                    <input class="form-check-input" type="radio" [(ngModel)]="student.gender" value="Male" name="gender" id="flexRadioDefault1">
                                     <label class="form-check-label" for="flexRadioDefault1">
                                       Male
                                     </label>
                                 </div>
                                 <div class="form-check" style="margin-left: 1rem;">
-                                    <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault1">
-                                    <label class="form-check-label" for="flexRadioDefault1">
+                                    <input class="form-check-input" type="radio" [(ngModel)]="student.gender" value="Female" name="gender" id="flexRadioDefault2">
+                                    <label class="form-check-label" for="flexRadioDefault2">
                                       Female
                                     </label>
                                 </div>
@@ -208,7 +214,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Phone</span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Enter Phone Number">
+                                <input type="text" class="form-control" [(ngModel)]="student.phone" name="phone" placeholder="Enter Phone Number">
                                 
                             </div>
         
@@ -216,22 +222,27 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Email ID</span>
                                 </div>
-                                <input type="email" class="form-control" placeholder="Enter Mail Address">
+                                <input type="email" class="form-control" [(ngModel)]="student.email" name="email" placeholder="Enter Mail Address">
                                 
                             </div>
                             <div class="input-group form-group p-2">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Password</span>
                                 </div>
-                                <input type="password" class="form-control" placeholder="Enter Password">
+                                <input type="password" class="form-control" [(ngModel)]="student.password" name="password" placeholder="Enter Password">
                                 
                             </div>
+                            <!-- <div class="input-group form-group p-2">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text">Course Selected</span>
+                              </div>
+                              <input type="text" class="form-control" [(ngModel)]="student.courseName" name="courseName" placeholder="Enter Course">
+                              
+                            </div> -->
                             <div class="input-group form-group p-2">
-                              <select class="form-select" aria-label="CourseSelect">
-                                <option selected>Select a Course</option>
-                                <option value="1">Core Java</option>
-                                <option value="2">Oracle</option>
-                                <option value="3">Spring</option>
+                              <select  class="form-select" [(ngModel)]="student.course" name="courseId" aria-label="CourseSelect">
+                                <option selected>Select Courses</option>
+                                <option *ngFor="let c of courses" [ngValue]="c">{{c.courseName}}</option>
                               </select>
                             </div>
                         </form>
@@ -242,7 +253,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Update</button>
+          <button type="button" (click)="updateStudent()" class="btn btn-success" data-bs-dismiss="modal">Update</button>
         </div>
       </div>
     </div>
@@ -280,17 +291,17 @@
                   </tr>
                   
                   
-                     <tr>
-                        <td> 1 </td>
-                        <td> Saurabh </td>
-                        <td> Prasad </td>
-                        <td> Male </td>
-                        <td> 22 </td>
-                        <td> saurabh@gmail.com </td>
-                        <td> saurabh </td>
-                        <td> 2 </td>
-                        <td> <button class="btn btn-danger bg-danger" data-bs-dismiss="modal">DELETE</button></td>
-                        <td> <button class="btn btn-info bg-info" data-bs-toggle="modal" data-bs-target="#updateStudentModal" data-bs-dismiss="modal">UPDATE</button></td>
+                     <tr *ngFor="let s of students">
+                        <td>{{s.studentId}}</td>
+                        <td>{{s.firstname}}</td>
+                        <td>{{s.lastname}}</td>
+                        <td>{{s.gender}}</td>
+                        <td>{{s.age}}</td>
+                        <td>{{s.email}}</td>
+                        <td>{{s.password}}</td>
+                        <td>{{s.course.courseId}}</td>
+                        <td> <button class="btn btn-danger bg-danger" (click)="deleteStudent(s.studentId)" data-bs-dismiss="modal">DELETE</button></td>
+                        <td> <button class="btn btn-info bg-info" (click)="getStudent(s.studentId); getCourses();" data-bs-toggle="modal" data-bs-target="#updateStudentModal" data-bs-dismiss="modal">UPDATE</button></td>
                      </tr>
                   
                </table>
@@ -336,32 +347,28 @@
                               <div class="input-group-prepend">
                                   <span class="input-group-text">Course Name</span>
                               </div>
-                              <input type="text" class="form-control" placeholder="Enter Course Name">
+                              <input type="text" class="form-control" [(ngModel)]="courseDetails.courseName" name="courseName" placeholder="Enter Course Name">
                               
                           </div>
                           <div class="input-group form-group p-2">
                               <div class="input-group-prepend">
                                   <span class="input-group-text">Course Duration(Months)</span>
                               </div>
-                              <input type="number" class="form-control" placeholder="Duration of Course">
+                              <input type="number" class="form-control" [(ngModel)]="courseDetails.course_duration_months" name="course_duration_months" placeholder="Duration of Course">
                               
                           </div>
 
                           <div class="input-group form-group p-2">
-                            <select class="form-select" aria-label="TeacherSelect">
+                            <select class="form-select" [(ngModel)]="courseDetails.teacher.teacherId" name="teacherId" aria-label="TeacherSelect">
                               <option selected>Select a Teacher</option>
-                              <option value="1">Roma Natalie</option>
-                              <option value="2">Piya Rai</option>
-                              <option value="3">Amanda Corter</option>
+                              <option *ngFor="let t of teachers" [ngValue]="t.teacherId">{{t.firstname}} {{t.lastname}}</option>
                             </select>
                           </div>
 
                           <div class="input-group form-group p-2">
-                            <select class="form-select" aria-label="TeacherSelect">
+                            <select  class="form-select" [(ngModel)]="courseDetails.fee" name="feeId" aria-label="FeeSelect">
                               <option selected>Select Fee Amount</option>
-                              <option value="1">Rs. 1500</option>
-                              <option value="2">Rs. 2220</option>
-                              <option value="3">Rs. 4850</option>
+                              <option *ngFor="let f of fees" [ngValue]="f">Rs. {{f.feeAmount}}</option>
                             </select>
                           </div>
                           
@@ -373,7 +380,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Add</button>
+        <button type="button" (click)="addCourse()" class="btn btn-success" data-bs-dismiss="modal">Add</button>
       </div>
     </div>
   </div>
@@ -398,39 +405,35 @@
                           <div class="input-group-prepend">
                               <span class="input-group-text">Course ID</span>
                           </div>
-                          <input type="number" class="form-control" placeholder="Enter Course Name">
+                          <input type="number" class="form-control" [(ngModel)]="course.courseId" name="courseId" placeholder="Enter Course Name">
                           
                         </div>
                         <div class="input-group form-group p-2">
                           <div class="input-group-prepend">
                               <span class="input-group-text">Course Name</span>
                           </div>
-                          <input type="text" class="form-control" placeholder="Enter Course Name">
+                          <input type="text" class="form-control" [(ngModel)]="course.courseName" name="courseName" placeholder="Enter Course Name">
                           
                         </div>
                         <div class="input-group form-group p-2">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Course Duration(Months)</span>
                             </div>
-                            <input type="number" class="form-control" placeholder="Duration of Course">
+                            <input type="number" class="form-control" [(ngModel)]="course.course_duration_months" name="course_duration_months" placeholder="Duration of Course">
                             
                         </div>
 
                         <div class="input-group form-group p-2">
-                          <select class="form-select" aria-label="TeacherSelect">
+                          <select class="form-select" [(ngModel)]="course.teacher" name="teacherId"  aria-label="TeacherSelect">
                             <option selected>Select a Teacher</option>
-                            <option value="1">Roma Natalie</option>
-                            <option value="2">Piya Rai</option>
-                            <option value="3">Amanda Corter</option>
+                            <option *ngFor="let c of teachers" [ngValue]="c">{{c.firstname}} {{c.lastname}}</option>
                           </select>
                         </div>
 
                         <div class="input-group form-group p-2">
-                          <select class="form-select" aria-label="TeacherSelect">
+                          <select class="form-select" [(ngModel)]="course.fee" name="feeId" aria-label="FeeSelect">
                             <option selected>Select Fee Amount</option>
-                            <option value="1">Rs. 1500</option>
-                            <option value="2">Rs. 2220</option>
-                            <option value="3">Rs. 4850</option>
+                            <option *ngFor="let c of fees" [ngValue]="c">Rs. {{c.feeAmount}}</option>
                           </select>
                         </div>
                       </form>
@@ -441,7 +444,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success"  data-bs-dismiss="modal">Update</button>
+        <button type="button" (click)="updateCourse()" class="btn btn-success"  data-bs-dismiss="modal">Update</button>
       </div>
     </div>
   </div>
@@ -469,20 +472,20 @@
                    <th>Course ID</th>
                    <th>Course Name</th>
                    <th>Course Duration(Months)</th>
-                   <th>Teacher ID</th>
                    <th>Fee ID</th>
+                   <th>Teacher ID</th>
                    <th colspan="2">Action</th>
                 </tr>
                 
                 
-                   <tr>
-                      <td> 1 </td>
-                      <td> Core Java </td>
-                      <td> 3 </td>
-                      <td> 22 </td>
-                      <td> 2 </td>
-                      <td> <button class="btn btn-danger bg-danger" data-bs-toggle="modal" data-bs-dismiss="modal">DELETE</button></td>
-                      <td> <button class="btn btn-info bg-info" data-bs-toggle="modal" data-bs-target="#updateCourseModal" data-bs-dismiss="modal">UPDATE</button></td>
+                   <tr *ngFor="let c of courses">
+                      <td>{{c.courseId}}</td>
+                      <td>{{c.courseName}}</td>
+                      <td>{{c.course_duration_months}}</td>
+                      <td>{{c.fee.feeId}}</td>
+                      <td>{{c.teacher.teacherId}}</td>
+                      <td> <button class="btn btn-danger bg-danger" (click)="deleteCourse(c.courseId)" data-bs-toggle="modal" data-bs-dismiss="modal">DELETE</button></td>
+                      <td> <button class="btn btn-info bg-info" (click)="getCourse(c.courseId); getTeachers(); getFees();" data-bs-toggle="modal" data-bs-target="#updateCourseModal" data-bs-dismiss="modal">UPDATE</button></td>
                    </tr>
                 
              </table>
@@ -781,12 +784,12 @@
 
 
 
- <!-- ADD COURSE MODAL -->
+ <!-- ADD FEE MODAL -->
  <div class="modal fade" id="addFeeModal" tabindex="-1" aria-labelledby="addFeeModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="addFeeModalLabel">Add Course</h5>
+        <h5 class="modal-title" id="addFeeModalLabel">Add Fee</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body pt-0 pb-0">
@@ -799,15 +802,15 @@
                               <div class="input-group-prepend">
                                   <span class="input-group-text">Fee Amount</span>
                               </div>
-                              <input type="number" class="form-control" placeholder="Enter Fee Amount">
+                              <input type="number" class="form-control" [(ngModel)]="feeDetails.feeAmount" name="feeAmount" placeholder="Enter Fee Amount">
                               
                           </div>
                           <div class="input-group form-group p-2">
-                            <select class="form-select" aria-label="PaymentModeSelect">
+                            <select class="form-select" [(ngModel)]="feeDetails.paymentMode" name="paymentMode" aria-label="PaymentModeSelect">
                               <option selected>Select Payment Mode</option>
-                              <option value="1">UPI</option>
-                              <option value="2">NET BANKING</option>
-                              <option value="3">CREDIT/DEBIT CARD</option>
+                              <option value="UPI">UPI</option>
+                              <option value="NET BANKING">NET BANKING</option>
+                              <option value="CREDIT/DEBIT CARD">CREDIT/DEBIT CARD</option>
                             </select>
                           </div>
                           
@@ -819,7 +822,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Add</button>
+        <button type="button" class="btn btn-success" (click)="addFee()" data-bs-dismiss="modal">Add</button>
       </div>
     </div>
   </div>
@@ -831,7 +834,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="updateFeeModalLabel">Update Course</h5>
+        <h5 class="modal-title" id="updateFeeModalLabel">Update Fee</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body pt-0 pb-0">
@@ -844,22 +847,22 @@
                           <div class="input-group-prepend">
                               <span class="input-group-text">Fee ID</span>
                           </div>
-                          <input type="number" class="form-control" placeholder="Enter Fee ID">
+                          <input type="number" [(ngModel)]="fee.feeId" name="feeId" class="form-control" placeholder="Enter Fee ID">
                           
                         </div>
                         <div class="input-group form-group p-2">
                           <div class="input-group-prepend">
                               <span class="input-group-text">Fee Amount</span>
                           </div>
-                          <input type="number" class="form-control" placeholder="Enter Fee Amount">
+                          <input type="number" class="form-control" [(ngModel)]="fee.feeAmount" name="feeAmount" placeholder="Enter Fee Amount">
                           
                         </div>
                         <div class="input-group form-group p-2">
-                          <select class="form-select" aria-label="PaymentModeSelect">
+                          <select class="form-select" [(ngModel)]="fee.paymentMode" name="paymentMode" aria-label="PaymentModeSelect">
                             <option selected>Select Payment Mode</option>
-                            <option value="1">UPI</option>
-                            <option value="2">NET BANKING</option>
-                            <option value="3">CREDIT/DEBIT CARD</option>
+                            <option value="UPI">UPI</option>
+                            <option value="NET BANKING">NET BANKING</option>
+                            <option value="CREDIT/DEBIT CARD">CREDIT/DEBIT CARD</option>
                           </select>
                         </div>
                       </form>
@@ -870,7 +873,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success"  data-bs-dismiss="modal">Update</button>
+        <button type="button" class="btn btn-success" (click)="updateFee()"  data-bs-dismiss="modal">Update</button>
       </div>
     </div>
   </div>
@@ -902,12 +905,12 @@
                 </tr>
                 
                 
-                   <tr>
-                      <td> 1 </td>
-                      <td> Rs. 15420 </td>
-                      <td> NET BANKING </td>
-                      <td> <button class="btn btn-danger bg-danger" data-bs-toggle="modal" data-bs-dismiss="modal">DELETE</button></td>
-                      <td> <button class="btn btn-info bg-info" data-bs-toggle="modal" data-bs-target="#updateFeeModal" data-bs-dismiss="modal">UPDATE</button></td>
+                   <tr *ngFor="let f of fees">
+                      <td>{{f.feeId}}</td>
+                      <td>{{f.feeAmount}}</td>
+                      <td>{{f.paymentMode}}</td>
+                      <td> <button class="btn btn-danger bg-danger" data-bs-toggle="modal" (click)="deleteFee(f.feeId)" data-bs-dismiss="modal">DELETE</button></td>
+                      <td> <button class="btn btn-info bg-info" (click)="getFee(f.feeId)" data-bs-toggle="modal" data-bs-target="#updateFeeModal" data-bs-dismiss="modal">UPDATE</button></td>
                    </tr>
                 
              </table>

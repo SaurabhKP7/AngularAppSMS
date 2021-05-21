@@ -1,6 +1,43 @@
-<p>studentregister works!</p>
-    
-<div class="container">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-success bg-gradient">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Student Portal</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/app-home">Home</a>
+          </li>
+           <li>
+            <a class="nav-link" routerLink="/app-adminlogin">Admin</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Student
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" routerLink="/app-studentregister">Register for Course</a></li>
+              <li><a class="dropdown-item" routerLink="/app-studentlogin">Student Login</a></li>
+            </ul>
+          </li>
+          
+          <li>  
+            <a class="nav-link" routerLink="/aboutus">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/contactus">Contact us</a>
+          </li>
+          
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search Courses" aria-label="Search">
+          <button class="btn btn-success">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>    
+<div class="container pt-5">
     <div class="col-xl-6 mx-auto m-5">
         <div class="card shadow">
             <div class="card-header bg-success bg-gradient text-center">
@@ -17,34 +54,34 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">First Name</span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Enter your First Name">
+                        <input type="text" class="form-control" [(ngModel)]="studentDetails.firstname" name="firstname" placeholder="Enter First Name">
                         
                     </div>
                     <div class="input-group form-group p-2">
                         <div class="input-group-prepend">
                             <span class="input-group-text">Last Name</span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Enter your Last Name">
+                        <input type="text" class="form-control" [(ngModel)]="studentDetails.lastname" name="lastname" placeholder="Enter Last Name">
                         
                     </div>
                     <div class="input-group form-group p-2">
                         <div class="input-group-prepend">
                             <span class="input-group-text">Age</span>
                         </div>
-                        <input type="number" class="form-control" placeholder="Enter your Age">
+                        <input type="number" class="form-control" [(ngModel)]="studentDetails.age" name="age" placeholder="Enter Age">
                         
                     </div>
                     
                     <div class="input-group form-group p-2">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault1">
+                            <input class="form-check-input" type="radio" [(ngModel)]="studentDetails.gender" value="Male" name="gender" id="flexRadioDefault1">
                             <label class="form-check-label" for="flexRadioDefault1">
                               Male
                             </label>
                         </div>
                         <div class="form-check" style="margin-left: 1rem;">
-                            <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault1">
+                            <input class="form-check-input" type="radio" [(ngModel)]="studentDetails.gender" value="Female" name="gender" id="flexRadioDefault2">
+                            <label class="form-check-label" for="flexRadioDefault2">
                               Female
                             </label>
                         </div>
@@ -55,7 +92,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">Phone</span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Enter your Phone Number">
+                        <input type="text" class="form-control" [(ngModel)]="studentDetails.phone" name="phone" placeholder="Enter Phone Number">
                         
                     </div>
 
@@ -63,18 +100,29 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">Email ID</span>
                         </div>
-                        <input type="email" class="form-control" placeholder="Enter your Mail Address">
+                        <input type="email" class="form-control" [(ngModel)]="studentDetails.email" name="email" placeholder="Enter Mail Address">
                         
                     </div>
                     <div class="input-group form-group p-2">
                         <div class="input-group-prepend">
                             <span class="input-group-text">Password</span>
                         </div>
-                        <input type="password" class="form-control" placeholder="Enter your Password">
+                        <input type="password" class="form-control" [(ngModel)]="studentDetails.password" name="password" placeholder="Enter Password">
                         
                     </div>
+                    <div class="input-group form-group p-2">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Selected Course</span>
+                        </div>
+                      <select  class="form-select" [(ngModel)]="studentDetails.course" name="courseId" aria-label="CourseSelect">
+                        <!-- <option selected [ngValue]="">Select a Course</option> -->
+                        <option [ngValue]="course">{{course.courseName}}</option>
+                      </select>
+                      <!-- <input type="text" class="form-control" [(ngModel)]="studentDetails.course" name="courseName" placeholder="Enter Course"> -->
+                      <!-- <input type="text" class="form-control" [(ngModel)]="course.courseName" name="courseName" placeholder="Enter Course"> -->
+                    </div>
                     <div class="form-group text-center mt-3">
-                        <button type="button" class="btn btn-success col-xl-6">Register</button>
+                        <button (click)="addStudent()" class="btn btn-success col-xl-6" >Register</button>
                     </div>
                 </form>
             </div>
