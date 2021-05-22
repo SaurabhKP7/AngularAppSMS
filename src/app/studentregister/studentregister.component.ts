@@ -43,6 +43,7 @@ export class StudentregisterComponent implements OnInit {
     phone : '',
     email : '',
     password : '',
+    registerDate : '',
     course : {
       courseId : ''
     }

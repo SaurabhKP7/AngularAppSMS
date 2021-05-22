@@ -14,7 +14,7 @@ const routes: Routes = [
   { path : "app-adminlogin", component : AdminloginComponent},
   { path : "app-adminpage", component : AdminpageComponent},
   { path : "app-studentpage", component : StudentpageComponent},
-  { path : "app-studentpage/:id", component : StudentpageComponent},
+  { path : "app-studentpage/:sid/:cid/:tid/:fid", component : StudentpageComponent},
   { path : "app-studentregister", component : StudentregisterComponent},
   { path : "app-studentregister/:id", component : StudentregisterComponent}
   

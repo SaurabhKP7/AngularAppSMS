@@ -71,6 +71,7 @@
         </div>
         <div class="modal-body">
           <div class="col">
+            <h6>Course Duration : {{courseForModal.course_duration_months}} months</h6>
             Details to be Decided SOON, class-based, object-oriented programming language that is 
             designed to have as few implementation dependencies as possible.
           </div>
@@ -87,6 +88,15 @@
 
 <div class="text-center m-3">
     <h2 class="text-success">Courses Offered</h2>
+</div>
+
+<div class="text-center">
+  <div class="col">
+    <a>Offer Ending in : <h6 class="text-success" id="demo"></h6> </a>
+    
+    <button class="btn btn-success">Register this Course for Free</button>
+  </div>
+
 </div>
 <div class="row">
     <div class="col-xl-3 m-4" *ngFor="let c of courses" (click)="valueToModal(c)" data-bs-toggle="modal" data-bs-target="#courseDetailsModal" >

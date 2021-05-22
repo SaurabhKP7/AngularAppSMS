@@ -57,85 +57,209 @@
 
   <div class="container-fluid">
     <div class="row flex-nowrap">
-        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-success bg-gradient">
-            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+        <div class="col-auto col-md-3 col-xl-2 p-0 bg-success bg-gradient">
+            <div class="d-flex flex-column align-items-center align-items-sm-start p-1 pt-2 text-white min-vh-100">
                 <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     <span class="fs-5 d-none d-sm-inline">Menu</span>
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
                         <a href="/home" class="nav-link align-middle px-0">
-                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline text-white">Home</span>
+                            <i class="fs-4 bi-house"></i> <h6 class="ms-1 d-none d-sm-inline text-white">Hello {{student.firstname}} {{student.lastname}}!!</h6>
+                            <hr class="m-0" style="border: 1px solid white;">
                         </a>
+                        
                     </li>
+                    
                     <li>
-                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline text-white">Sub Menu</span> </a>
+                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link p-0 align-middle">
+                            <i class="fs-4 bi-speedometer2"></i> <h6 class="ms-1 d-none d-sm-inline text-white">Profile Details : </h6>
+                            <hr class="m-0" style="border: 1px solid white;">
+                          </a>
+                            
                         <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                             <li class="w-100">
-                                <a href="/emplist" class="nav-link px-0"> <span class="d-none d-sm-inline text-white">1. Employee List</span></a>
+                                <a  class="nav-link p-0"> <span class="d-none d-sm-inline text-white">Name : {{student.firstname}} {{student.lastname}}</span></a>
                             </li>
                             <li class="w-100">
-                              <a href="/empnamelist" class="nav-link px-0"> <span class="d-none d-sm-inline text-white">2. Employee Names</span></a>
+                              <a class="nav-link p-0"> <span class="d-none d-sm-inline text-white">Age : {{student.age}} </span></a>
                           </li>
   
                             <li>
-                                <a href="/aboutus" class="nav-link px-0"> <span class="d-none d-sm-inline text-white">3. About Us</span></a>
+                                <a  class="nav-link p-0"> <span class="d-none d-sm-inline text-white">Gender : {{student.gender}} </span></a>
                             </li>
                             <li>
-                              <a href="/empcreate" class="nav-link px-0"> <span class="d-none d-sm-inline text-white">4. Add Employee</span></a>
+                              <a  class="nav-link p-0"> <span class="d-none d-sm-inline text-white">Mail ID : {{student.email}} </span></a>
                           </li>
                             <li>
-                              <a href="/contactus" class="nav-link px-0"> <span class="d-none d-sm-inline text-white">5. Contact Us</span></a>
+                              <a  class="nav-link p-0"> <span class="d-none d-sm-inline text-white">Phone : {{student.phone}} </span></a>
                           </li>
+                          <li>
+                            <a  class="nav-link p-0"> <span class="d-none d-sm-inline text-white">Trainer : {{teacher.firstname}} {{teacher.lastname}} </span></a>
+                        </li>
+                        <li>
+                          <button type="button" data-bs-toggle="modal" data-bs-target="#updateStudentModal" class="btn btn-info">Update Profile</button>
+                        </li>
                         </ul>
                     </li>
                     
                 </ul>
+                
                 <hr>
+                
                
             </div>
         </div>
-        <div class="col py-3" style="margin-top: 10rem;">
-            <div class="row m-3 mt-5">
-                <div class="col-xl-6">
-                    <div class="card border-left-primary bg-success bg-gradient shadow h-100 py-2" data-bs-toggle="modal" data-bs-target="#studentCRUDModal">
-                        <div class="card-body text-center">
-                           
-                                <h2 class="text-white">View Profile</h2>
-                           
-                        </div>
+        <div class="col py-3" style="margin-top: 2rem;">
+            <div class="row">
+              <div class="col-xl">
+                <div class="container pt-5">
+                  <div class="col-xl mx-auto">
+                      <div class="card shadow">
+                          <div class="card-header bg-success bg-gradient">
+                              <h3 class="text-white">Course Details</h3>
+                          </div>
+                      </div>
+                      <div class="card-body mt-3">
+                          <h6>Course Name : {{course.courseName}}</h6>
+                          <h6>Date of Registration : {{student.registerDate | date}}</h6>
+                          <h6>Course Duration : {{course.course_duration_months}} months</h6>
+                          <h6>Fee Amount : {{fee.feeAmount}}</h6>
+                      </div>
+                    <div class="card-footer">
+                      
                     </div>
+                  </div>
                 </div>
-                
-                <div class="col-xl-6">
-                    <div class="card border-left-primary bg-success bg-gradient shadow h-100 py-2" data-bs-toggle="modal" data-bs-target="#courseDetailsModal">
-                        <div class="card-body text-center">
-                            <h2 class="text-white">Course Details</h2>
-                        </div>
+              </div>
+              <div class="col-xl">
+                <div class="container pt-5">
+                  <div class="col-xl mx-auto">
+                      <div class="card shadow">
+                          <div class="card-header bg-success bg-gradient">
+                              <h3 class="text-white">Trainer Details</h3>
+                          </div>
+                      </div>
+                      <div class="card-body mt-3">
+                        <h6>Trainer Name : {{teacher.firstname}} {{teacher.lastname}}</h6>
+                          <h6>Contact Email : {{teacher.email}}</h6>
+                          <h6>Contact Phone : {{teacher.phone}}</h6>
+                      </div>
+                    <div class="card-footer">
+                      
                     </div>
+                  </div>
                 </div>
-            </div>
-            
-            <div class="row m-3">
-                <div class="col-xl-6">
-                    <div class="card border-left-primary bg-success bg-gradient shadow h-100 py-2" data-bs-toggle="modal" data-bs-target="#courseDetailsModal">
-                        <div class="card-body text-center">
-                            <h2 class="text-white">Trainer Details</h2>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-xl-6">
-                    <div class="card border-left-primary bg-success bg-gradient shadow h-100 py-2" data-bs-toggle="modal" data-bs-target="#courseDetailsModal">
-                        <div class="card-body text-center">
-                            <h2 class="text-white">Update Profile</h2>
-                        </div>
-                    </div>
-                </div>
-            
-                
+              </div>
             </div>
         </div>
+    </div>
+  </div>
+
+
+  <!-- UPDATE STUDENT MODAL -->
+  <div class="modal fade" id="updateStudentModal" tabindex="-1" aria-labelledby="updateStudentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="updateStudentModalLabel">Update Profile</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body pt-0 pb-0">
+          <div class="container">
+            <div class="col-xl mx-auto m-3">
+                <div class="">
+                    <div class="">
+                        <form>
+                            <div class="input-group form-group p-2">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text">Student ID</span>
+                              </div>
+                              <input type="number" class="form-control" [(ngModel)]="student.studentId" name="studentId" placeholder="Enter First Name" readonly>
+                            </div>
+                            <div class="input-group form-group p-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">First Name</span>
+                                </div>
+                                <input type="text" class="form-control" [(ngModel)]="student.firstname" name="firstname" placeholder="Enter First Name">
+                                
+                            </div>
+                            <div class="input-group form-group p-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Last Name</span>
+                                </div>
+                                <input type="text" class="form-control" [(ngModel)]="student.lastname" name="lastname" placeholder="Enter Last Name">
+                                
+                            </div>
+                            <div class="input-group form-group p-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Age</span>
+                                </div>
+                                <input type="number" class="form-control" [(ngModel)]="student.age" name="age" placeholder="Enter Age">
+                                
+                            </div>
+                            
+                            <div class="input-group form-group p-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" [(ngModel)]="student.gender" value="Male" name="gender" id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                      Male
+                                    </label>
+                                </div>
+                                <div class="form-check" style="margin-left: 1rem;">
+                                    <input class="form-check-input" type="radio" [(ngModel)]="student.gender" value="Female" name="gender" id="flexRadioDefault2">
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                      Female
+                                    </label>
+                                </div>
+                                
+                            </div>
+        
+                            <div class="input-group form-group p-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Phone</span>
+                                </div>
+                                <input type="text" class="form-control" [(ngModel)]="student.phone" name="phone" placeholder="Enter Phone Number">
+                                
+                            </div>
+        
+                            <div class="input-group form-group p-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Email ID</span>
+                                </div>
+                                <input type="email" class="form-control" [(ngModel)]="student.email" name="email" placeholder="Enter Mail Address" readonly>
+                                
+                            </div>
+                            <!-- <div class="input-group form-group p-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Password</span>
+                                </div>
+                                <input type="password" class="form-control" [(ngModel)]="student.password" name="password" placeholder="Enter Password">
+                                
+                            </div> -->
+                            <!-- <div class="input-group form-group p-2">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text">Course Selected</span>
+                              </div>
+                              <input type="text" class="form-control" [(ngModel)]="student.courseName" name="courseName" placeholder="Enter Course">
+                              
+                            </div> -->
+                            <!-- <div class="input-group form-group p-2">
+                              <select  class="form-select" [(ngModel)]="student.course" name="courseId" aria-label="CourseSelect">
+                                <option selected>Select Courses</option>
+                                <option *ngFor="let c of courses" [ngValue]="c">{{c.courseName}}</option>
+                              </select>
+                            </div> -->
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" (click)="updateStudent()" class="btn btn-success" data-bs-dismiss="modal">Update</button>
+        </div>
+      </div>
     </div>
   </div>

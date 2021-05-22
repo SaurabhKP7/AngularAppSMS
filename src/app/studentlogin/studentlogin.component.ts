@@ -31,7 +31,12 @@ export class StudentloginComponent implements OnInit {
         this.router.navigate(["app-studentlogin"]);
       }
       else{
-        this.router.navigate(["app-studentpage", this.studentData.studentId]);
+        this.router.navigate([
+          "app-studentpage",
+           this.studentData.studentId,
+           this.studentData.course.courseId, 
+           this.studentData.course.teacher.teacherId,
+           this.studentData.course.fee.feeId]);
       }
       });
 
