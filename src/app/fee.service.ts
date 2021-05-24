@@ -12,6 +12,7 @@ export class FeeService {
   private SERVICE_URL : string = "/fee";
   private GET_URL : string = "/getlist";
   private UPDATE_URL : string = "/update";
+  private UPDATE_ZERO_URL : string = "/updatezero";
   private DELETE_URL : string = "/delete/";
   private SEARCH_URL : string = "/getrecord/";
   private ADD_URL : string = "/insert";
@@ -40,6 +41,11 @@ export class FeeService {
 
   updateFee(fee : any) : Observable<any> {
     return this.http.put<any>(this.BASE_URL + this.SERVICE_URL + this.UPDATE_URL, JSON.stringify(fee), this.httpOptions)
+    .pipe(retry(1), catchError(this.handleError));
+  }
+
+  updateFeeZero() : Observable<any> {
+    return this.http.put<any>(this.BASE_URL + this.SERVICE_URL + this.UPDATE_ZERO_URL, this.httpOptions)
     .pipe(retry(1), catchError(this.handleError));
   }
 

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-success bg-gradient">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Student Portal</a>
+      <a class="navbar-brand" href="#">SMS Portal</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -17,7 +17,7 @@
               Student
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" routerLink="/app-studentregister">Register for Course</a></li>
+              <!-- <li><a class="dropdown-item" routerLink="/app-studentregister">Register for Course</a></li> -->
               <li><a class="dropdown-item" routerLink="/app-studentlogin">Student Login</a></li>
             </ul>
           </li>
@@ -50,28 +50,35 @@
                   </div>
               </div>
               <div class="card-body mt-3">
-                  <form action="register" method="post">
+                  <form #userForm="ngForm" (onSubmit)="userForm.value">
                       
                     
+                    <article class="text-danger mx-3" *ngIf="emailid.errors?.pattern && emailid.touched">Enter Valid Email ID</article>
+                    <article class="text-danger mx-3" *ngIf="emailid.errors?.required && emailid.touched">Enter Email ID</article>
                       <div class="input-group form-group p-2">
                           <div class="input-group-prepend">
-                              <span class="input-group-text p-3"><i class="fa fa-user"></i></span>
+                              <span class="input-group-text p-3"><i class="fa fa-user"></i>
+                                <span class="text-danger" *ngIf="emailid.errors?.required && emailid.untouched">*</span>
+                              </span>
                           </div>
-                          <input type="text" class="form-control" [(ngModel)]="email" name="email" placeholder="Enter Your Email ID">
+                          <input type="text" class="form-control" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" #emailid="ngModel" [(ngModel)]="email" name="email" placeholder="Enter Your Email ID">
                           
                       </div>
                       
+                      <article class="text-danger mx-3" *ngIf="pass.errors?.required && pass.touched">Enter password</article>
                       <div class="input-group form-group p-2">
                           <div class="input-group-prepend">
-                              <span class="input-group-text p-3"><i class="fa fa-key"></i></span>
+                              <span class="input-group-text p-3"><i class="fa fa-key"></i>
+                                <span class="text-danger" *ngIf="pass.errors?.required && pass.untouched">*</span>
+                              </span>
                           </div>
-                          <input type="text" class="form-control" [(ngModel)]="password" name="password" placeholder="Enter Your Password">
+                          <input type="password" class="form-control" required #pass="ngModel" [(ngModel)]="password" name="password" placeholder="Enter Your Password">
                           
                       </div>
                       
                       
                       <div class="form-group text-center mt-3">
-                         <button type="button" (click)="validateStudent()" class="btn btn-success col-xl-6" >Login</button>
+                         <button type="button" [disabled]="userForm.invalid" (click)="validateStudent()" class="btn btn-success col-xl-6" >Login</button>
     
                       </div>
                       

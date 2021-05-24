@@ -12,6 +12,8 @@ import { TeacherService } from '../teacher.service';
 })
 export class StudentregisterComponent implements OnInit {
 
+  myDate : any = new Date();
+
   public courseId : any;
   constructor(
     public studentAPI : StudentService,
@@ -29,6 +31,8 @@ export class StudentregisterComponent implements OnInit {
     this.getFees();
     this.getCourses();
     this.getCourse();
+
+    
 
   }
 
@@ -57,12 +61,30 @@ export class StudentregisterComponent implements OnInit {
   public course : any = {};
 
   addStudent() {
-    
-    if(window.confirm('Are you sure, you want to add student?')){
-      this.studentAPI.addStudent(this.studentDetails).subscribe();
-      alert(this.studentDetails.firstname + " " + this.studentDetails.lastname + " Added Successfully");
-      this.router.navigate(["app-studentlogin"]);
+
+    // this.validateStudent();
+
+    if(this.validateStudent()){
+      if(window.confirm('Are you sure, you want to add student?')){
+        this.studentAPI.addStudent(this.studentDetails).subscribe();
+        alert(this.studentDetails.firstname + " " + this.studentDetails.lastname + " Added Successfully");
+        this.router.navigate(["app-studentlogin"]);
+      }
     }
+
+   
+  }
+
+  validateStudent() {
+    var course = this.studentDetails.course.courseId;
+    if(course==""){
+      alert("Please select a Course");
+      return false;
+    }
+    else{
+      return true;
+    }
+
   }
 
   getTeachers() {
@@ -79,6 +101,7 @@ export class StudentregisterComponent implements OnInit {
   getCourses(){
     this.courseAPI.getCourses().subscribe(data => this.courses = data);
     console.log("Courses :" + this.courses);
+    console.log("this : "+ this.myDate)
 
   }
 

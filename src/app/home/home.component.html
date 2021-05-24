@@ -18,7 +18,7 @@
               Student
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" routerLink="/app-studentregister">Register for Course</a></li>
+              <!-- <li><a class="dropdown-item" routerLink="/app-studentregister">Register for Course</a></li> -->
               <li><a class="dropdown-item" routerLink="/app-studentlogin">Student Login</a></li>
             </ul>
           </li>
@@ -32,6 +32,7 @@
           
         </ul>
         <form class="d-flex">
+          <article class="text-white w-100 pt-2">{{myDate | date}}</article>
           <input class="form-control me-2" type="search" placeholder="Search Courses" aria-label="Search">
           <button class="btn btn-success">Search</button>
         </form>
@@ -39,15 +40,15 @@
     </div>
   </nav>
 
-<div id="carouselExampleControlsNoTouching" class="carousel slide mt-5" data-bs-touch="false" data-bs-interval="false">
+<div id="carouselExampleControlsNoTouching" class="carousel slide mt-5" data-bs-ride="carousel">
     <div class="carousel-inner">
-      <div class="carousel-item active">
+      <div class="carousel-item active" data-bs-interval="2000">
         <img src="assets/cimg1.jpg" class="w-100" alt="..." style="height: 390px;">
       </div>
-      <div class="carousel-item">
+      <div class="carousel-item" data-bs-interval="2000">
         <img src="assets/cimg2.jpg" class="w-100" alt="..." style="height: 390px;">
       </div>
-      <div class="carousel-item">
+      <div class="carousel-item" data-bs-interval="2000">
         <img src="assets/cimg3.jpg" class="w-100" alt="..." style="height: 390px;">
       </div>
     </div>
@@ -71,9 +72,8 @@
         </div>
         <div class="modal-body">
           <div class="col">
-            <h6>Course Duration : {{courseForModal.course_duration_months}} months</h6>
-            Details to be Decided SOON, class-based, object-oriented programming language that is 
-            designed to have as few implementation dependencies as possible.
+            <h6>Course Duration : {{courseForModal.course_duration_months}} month(s)</h6>
+            COURSE DESCRIPTION IN PARAGRAPH to be DECIDED in FUTURE.
           </div>
         </div>
         <div class="modal-footer">
@@ -91,11 +91,19 @@
 </div>
 
 <div class="text-center">
-  <div class="col">
+  <!-- <div class="col">
     <a>Offer Ending in : <h6 class="text-success" id="demo"></h6> </a>
     
     <button class="btn btn-success">Register this Course for Free</button>
-  </div>
+  </div> -->
+
+  <!-- <div *ngIf="isVisible" class="timer">
+    <h4> Free Offer Ends </h4>
+    <span id="days"> {{daysToDday}} </span>Day(s)
+    <span id="hours"> {{hoursToDday}} </span>Hrs 
+    <span id="minutes"> {{minutesToDday}} </span>Min
+    <span id="seconds"> {{secondsToDday}} </span>S
+</div> -->
 
 </div>
 <div class="row">
@@ -106,7 +114,18 @@
                     <div class="col mr-2">
                         <div class="text-xs text-success text-uppercase mb-1">
                             {{c.courseName}}</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">Rs. {{c.fee.feeAmount}}</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800" *ngIf="c.fee.feeAmount==0; then thenBlock;">Free Offer</div>
+                        <ng-template #thenBlock>
+                          <button hidden>timer {{startTimer()}}</button>
+                          <div class="h5 mb-0 font-weight-bold text-gray-800">Free Offer</div>
+                        </ng-template>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800" *ngIf="c.fee.feeAmount!=0">Rs. {{c.fee.feeAmount}}</div>
+                        <div class="col" *ngIf="c.fee.feeAmount==0">
+                          <span id="days"> {{daysToDday}} </span>Day(s)
+                          <span id="hours"> {{hoursToDday}} </span>Hrs 
+                          <span id="minutes"> {{minutesToDday}} </span>Min
+                          <span id="seconds"> {{secondsToDday}} </span>S
+                        </div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-coffee fa-2x text-success"></i>
@@ -169,4 +188,6 @@
         </div>
     </div>
 </div> -->
+
+
 

@@ -2,14 +2,14 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-success bg-gradient">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Admin Portal</a>
+      <a class="navbar-brand" href="/app-adminpage">Admin Portal</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="/app-home">Home</a>
+            <!-- <a class="nav-link active" aria-current="page" routerLink="/app-home">Home</a> -->
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -50,8 +50,7 @@
           
         </ul>
         <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search Courses" aria-label="Search">
-          <button class="btn btn-success">Search</button>
+          <button type="button" (click)="logout()" class="btn btn-success">Logout</button>
         </form>
       </div>
     </div>
@@ -820,7 +819,7 @@
                               <div class="input-group-prepend">
                                   <span class="input-group-text">Fee Amount</span>
                               </div>
-                              <input type="number" class="form-control" [(ngModel)]="feeDetails.feeAmount" name="feeAmount" placeholder="Enter Fee Amount">
+                              <input type="number" class="form-control" [(ngModel)]="feeDetails.feeAmount" name="feeAmount" placeholder="Enter Fee Amount" required>
                               
                           </div>
                           <div class="input-group form-group p-2">
@@ -964,7 +963,7 @@
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
-                        <a href="/home" class="nav-link align-middle px-0">
+                        <a href="#" class="nav-link align-middle px-0">
                             <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline text-white">Home</span>
                         </a>
                     </li>
@@ -973,20 +972,20 @@
                             <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline text-white">Sub Menu</span> </a>
                         <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                             <li class="w-100">
-                                <a href="/emplist" class="nav-link px-0"> <span class="d-none d-sm-inline text-white">1. Employee List</span></a>
+                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline text-white">1. Future Item</span></a>
                             </li>
                             <li class="w-100">
-                              <a href="/empnamelist" class="nav-link px-0"> <span class="d-none d-sm-inline text-white">2. Employee Names</span></a>
+                              <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline text-white">2. Future Item</span></a>
                           </li>
   
                             <li>
-                                <a href="/aboutus" class="nav-link px-0"> <span class="d-none d-sm-inline text-white">3. About Us</span></a>
+                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline text-white">3. Future Item</span></a>
                             </li>
                             <li>
-                              <a href="/empcreate" class="nav-link px-0"> <span class="d-none d-sm-inline text-white">4. Add Employee</span></a>
+                              <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline text-white">4. Future Item</span></a>
                           </li>
                             <li>
-                              <a href="/contactus" class="nav-link px-0"> <span class="d-none d-sm-inline text-white">5. Contact Us</span></a>
+                              <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline text-white">5. Future Item</span></a>
                           </li>
                         </ul>
                     </li>

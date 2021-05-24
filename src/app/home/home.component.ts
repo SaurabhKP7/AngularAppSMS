@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { interval, Subscription } from 'rxjs';
 import { CourseService } from '../course.service';
 import { FeeService } from '../fee.service';
 import { StudentService } from '../student.service';
@@ -12,6 +13,8 @@ import { TeacherService } from '../teacher.service';
 })
 export class HomeComponent implements OnInit {
 
+  myDate : any = new Date();
+  
   constructor(
     public studentAPI : StudentService,
     public teacherAPI : TeacherService,
@@ -25,7 +28,14 @@ export class HomeComponent implements OnInit {
     this.getTeachers();
     this.getFees();
     this.getCourses();
+    
+
+    
+    
   }
+//   ngOnDestroy() {
+//     this.subscription.unsubscribe();
+//  }
 
   @Input()
   studentDetails = {
@@ -41,12 +51,23 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  
+
+
   public courseForModal : any = [];
 
   public teachers : any = []; //Teacher List
   public students : any = []; //Teacher List
-  public courses : any = []; //Teacher List
+  public courses : Array<any> = []; //Teacher List
   public fees : any = []; //Teacher List
+
+  startTimer() {
+    console.log("hii")
+    this.subscription = interval(1000)
+    .subscribe(x => { this.getTimeDifference(); });
+  }
+ 
+
 
   valueToModal(course : any) {
     this.courseForModal = course;
@@ -68,35 +89,58 @@ export class HomeComponent implements OnInit {
     this.courseAPI.getCourses().subscribe(data => this.courses = data);
     console.log("Courses :" + this.courses);
 
+    // this.courses.forEach(c => {
+    //   if(c.fee.feeAmount == 0) {
+    //     delete this.courses[c];
+    //   }
+      
+    // });
+
   }
 
-  public countDownDate = new Date("June 5, 2021 15:37:25").getTime();
+  private subscription: Subscription;
+  
+  public dateNow = new Date();
+  public dDay = new Date('May 28 2021 09:19:00');
+  milliSecondsInASecond = 1000;
+  hoursInADay = 24;
+  minutesInAnHour = 60;
+  SecondsInAMinute  = 60;
 
-// Update the count down every 1 second
-  public x = setInterval(function() {
+  public isVisible : boolean = true;
 
-  // Get today's date and time
-  var now = new Date().getTime();
-    
-  // Find the distance between now and the count down date
-  var distance = this.countDownDate - now;
-    
-  // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
-  // Output the result in an element with id="demo"
-  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
-    
-  // If the count down is over, write some text 
-  if (distance < 0) {
-    clearInterval(this.x);
-    document.getElementById("demo").innerHTML = "EXPIRED";
+  public timeDifference;
+  public secondsToDday;
+  public minutesToDday;
+  public hoursToDday;
+  public daysToDday;
+
+
+  private getTimeDifference () {
+      this.timeDifference = this.dDay.getTime() - new  Date().getTime();
+      if(this.timeDifference == 0) {
+        this.isVisible = false;
+        
+        this.subscription.unsubscribe();
+        this.updateFeeWhereZero();
+        // window.location.reload();
+        this.ngOnInit();
+      }
+      this.allocateTimeUnits(this.timeDifference);
   }
-}, 1000);
 
+  private allocateTimeUnits (timeDifference) {
+      this.secondsToDday = Math.floor((timeDifference) / (this.milliSecondsInASecond) % this.SecondsInAMinute);
+      this.minutesToDday = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour) % this.SecondsInAMinute);
+      this.hoursToDday = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute) % this.hoursInADay);
+      this.daysToDday = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute * this.hoursInADay));
+  }
+
+  updateFeeWhereZero() {
+    this.feeAPI.updateFeeZero().subscribe();
+    // window.location.reload();
+  }
+
+ 
 
 }

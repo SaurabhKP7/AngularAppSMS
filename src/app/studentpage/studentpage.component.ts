@@ -46,6 +46,12 @@ export class StudentpageComponent implements OnInit {
     this.getFee();
   }
 
+  logout() {
+    if(window.confirm('Are you sure you want to Logout?')){
+      this.router.navigate(["app-home"]);
+    }
+  }
+
 
   updateStudent() {
     this.studentAPI.updateStudent(this.student).subscribe();

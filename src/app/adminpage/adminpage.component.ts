@@ -81,6 +81,12 @@ export class AdminpageComponent implements OnInit {
   public course : any  = {};
   public fee : any  = {};
 
+  logout() {
+    if(window.confirm('Are you sure you want to Logout?')){
+      this.router.navigate(["app-home"]);
+    }
+  }
+
   addTeacher() {
     // document.getElementById("listTeacherModal").classList.add("show");
     // alert("Teacher added!!!");

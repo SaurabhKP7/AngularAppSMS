@@ -16,7 +16,8 @@ const routes: Routes = [
   { path : "app-studentpage", component : StudentpageComponent},
   { path : "app-studentpage/:sid/:cid/:tid/:fid", component : StudentpageComponent},
   { path : "app-studentregister", component : StudentregisterComponent},
-  { path : "app-studentregister/:id", component : StudentregisterComponent}
+  { path : "app-studentregister/:id", component : StudentregisterComponent},
+  // {path: '**', component: PagenotfoundComponent}
   
 ];
 
