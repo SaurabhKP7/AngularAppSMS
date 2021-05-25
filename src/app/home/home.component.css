@@ -1,6 +1,9 @@
 .border-left-primary {
     border-left: .25rem solid #28a745!important;
 }
+article{
+  font-size: small;
+}
 
 /* .timer {
     text-align: center;

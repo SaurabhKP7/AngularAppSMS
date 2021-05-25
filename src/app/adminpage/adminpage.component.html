@@ -69,75 +69,119 @@
             <div class="col-xl mx-auto m-3">
                 <div class="">
                     <div class="">
-                        <form>
-                            <div class="input-group form-group p-2">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">First Name</span>
-                                </div>
-                                <input type="text" class="form-control" [(ngModel)]="studentDetails.firstname" name="firstname" placeholder="Enter First Name">
-                                
-                            </div>
-                            <div class="input-group form-group p-2">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">Last Name</span>
-                                </div>
-                                <input type="text" class="form-control" [(ngModel)]="studentDetails.lastname" name="lastname" placeholder="Enter Last Name">
-                                
-                            </div>
-                            <div class="input-group form-group p-2">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">Age</span>
-                                </div>
-                                <input type="number" class="form-control" [(ngModel)]="studentDetails.age" name="age" placeholder="Enter Age">
-                                
-                            </div>
-                            
-                            <div class="input-group form-group p-2">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" [(ngModel)]="studentDetails.gender" value="Male" name="gender" id="flexRadioDefault1">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                      Male
-                                    </label>
-                                </div>
-                                <div class="form-check" style="margin-left: 1rem;">
-                                    <input class="form-check-input" type="radio" [(ngModel)]="studentDetails.gender" value="Female" name="gender" id="flexRadioDefault2">
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                      Female
-                                    </label>
-                                </div>
-                                
-                            </div>
-
-                            <div class="input-group form-group p-2">
+                        <form #userForm="ngForm" (onSubmit)="userForm.value">
+                          <article class="text-danger mx-3" *ngIf="firstname.errors?.required && firstname.touched">Enter First Name</article>
+                          <div class="input-group form-group p-2">
                               <div class="input-group-prepend">
-                                  <span class="input-group-text">Date of Registration</span>
+                                  <span class="input-group-text">First Name 
+                                    <span class="text-danger" *ngIf="firstname.errors?.required && firstname.untouched">*</span>
+                                  </span>
+                                  
                               </div>
-                              <input type="date" class="form-control" [(ngModel)]="studentDetails.registerDate" name="registerDate" placeholder="Enter Password">
+                              <input type="text" class="form-control" id="firstname" #firstname="ngModel" required [(ngModel)]="studentDetails.firstname" name="firstname" placeholder="Enter First Name">
                               
+                          </div>
+                          <!-- <div  class="text-danger" *ngIf="firstname.errors?.required && firstname.untouched">
+                            *
+                          </div> -->
+                          <article class="text-danger mx-3" *ngIf="lastname.errors?.required && lastname.touched">Enter Last Name</article>
+                          <div class="input-group form-group p-2">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text">Last Name 
+                                    <span class="text-danger" *ngIf="lastname.errors?.required && lastname.untouched">*</span>
+                                  </span>
+                              </div>
+                              <input type="text" class="form-control" #lastname="ngModel" required [(ngModel)]="studentDetails.lastname" name="lastname" placeholder="Enter Last Name">
+                              
+                          </div>
+      
+                          <article class="text-danger mx-3" *ngIf="age.errors?.required && age.touched">Enter Age</article>
+                          <div class="input-group form-group p-2">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text">Age 
+                                    <span class="text-danger" *ngIf="age.errors?.required && age.untouched">*</span>
+                                  </span>
+                              </div>
+                              <input type="number" class="form-control" required #age="ngModel" [(ngModel)]="studentDetails.age" name="age" placeholder="Enter Age">
+                              
+                          </div>
+                          
+                          
+                          <div class="input-group form-group p-2">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">Gender 
+                                  <span class="text-danger" *ngIf="gender.errors?.required && gender.untouched">*</span>
+                                </span>
+                              </div>
+                              <div class="form-check mx-3">
+                                  <input class="form-check-input" required type="radio" #gender="ngModel" [(ngModel)]="studentDetails.gender" value="Male" name="gender" id="flexRadioDefault1">
+                                  <label class="form-check-label" for="flexRadioDefault1">
+                                    Male
+                                  </label>
+                              </div>
+                              <div class="form-check" style="margin-left: 1rem;">
+                                  <input class="form-check-input" required type="radio" #gender="ngModel" [(ngModel)]="studentDetails.gender" value="Female" name="gender" id="flexRadioDefault2">
+                                  <label class="form-check-label" for="flexRadioDefault2">
+                                    Female
+                                  </label>
+                              </div>
+                              <div class="form-check" style="margin-left: 1rem;">
+                                <input class="form-check-input" required type="radio" #gender="ngModel" [(ngModel)]="studentDetails.gender" value="Others" name="gender" id="flexRadioDefault3">
+                                <label class="form-check-label" for="flexRadioDefault3">
+                                  Others
+                                </label>
                             </div>
-        
-                            <div class="input-group form-group p-2">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">Phone</span>
-                                </div>
-                                <input type="text" class="form-control" [(ngModel)]="studentDetails.phone" name="phone" placeholder="Enter Phone Number">
-                                
+                              
+                          </div>
+      
+                          <article class="text-danger mx-3" *ngIf="dor.errors?.required && dor.touched">Enter Date</article>
+                          <div class="input-group form-group p-2">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Date of Registration 
+                                  <span class="text-danger" *ngIf="dor.errors?.required && dor.untouched">*</span>
+                                </span>
                             </div>
-        
-                            <div class="input-group form-group p-2">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">Email ID</span>
-                                </div>
-                                <input type="email" class="form-control" [(ngModel)]="studentDetails.email" name="email" placeholder="Enter Mail Address">
-                                
-                            </div>
-                            <div class="input-group form-group p-2">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">Password</span>
-                                </div>
-                                <input type="password" class="form-control" [(ngModel)]="studentDetails.password" name="password" placeholder="Enter Password">
-                                
-                            </div>
+                            <input type="date" id="date" class="form-control" required #dor="ngModel" [(ngModel)]="studentDetails.registerDate" name="registerDate" placeholder="Enter Password">
+      
+                          </div>
+      
+                          <article class="text-danger mx-3" *ngIf="phone.errors?.pattern && phone.touched">Enter Valid Phone Number</article>
+                          <article class="text-danger mx-3" *ngIf="phone.errors?.required && phone.touched">Enter Phone Number</article>
+                          <div class="input-group form-group p-2">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text">Phone 
+                                    <span class="text-danger" *ngIf="phone.errors?.required && phone.untouched">*</span>
+                                  </span>
+                              </div>
+                              <input type="text" class="form-control" required pattern="[6-9]{1}[0-9]{9}" #phone="ngModel" [(ngModel)]="studentDetails.phone" name="phone" placeholder="Enter Phone Number">
+                              
+                          </div>
+      
+                          <article class="text-danger mx-3" *ngIf="email.errors?.pattern && email.touched">Enter Valid Email ID</article>
+                          <article class="text-danger mx-3" *ngIf="email.errors?.required && email.touched">Enter Email ID</article>
+                          <div class="input-group form-group p-2">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text">Email ID 
+                                    <span class="text-danger" *ngIf="email.errors?.required && email.untouched">*</span>
+                                  </span>
+                              </div>
+                              <input type="email" class="form-control" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" #email="ngModel" [(ngModel)]="studentDetails.email" name="email" placeholder="Enter Mail Address">
+                              
+                          </div>
+      
+                          <article class="text-danger mx-3" *ngIf="password.errors?.pattern && password.touched">Enter a strong Password(min 8 chars, atleast one Caps,small and number)</article>
+                          <article class="text-danger mx-3" *ngIf="password.errors?.required && password.touched">Enter password</article>
+                          <div class="input-group form-group p-2">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text">Password 
+                                    <span class="text-danger" *ngIf="password.errors?.required && password.untouched">*</span>
+                                  </span>
+                                  
+                              </div>
+                              <input type="text" class="form-control" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" #password="ngModel" [(ngModel)]="studentDetails.password" name="password" placeholder="Enter Password">
+                              
+                          </div>
+      
                             <div class="input-group form-group p-2">
                               <select  class="form-select" [(ngModel)]="studentDetails.course" name="courseId" aria-label="CourseSelect">
                                 <option selected [ngValue]="">Select a Course</option>
@@ -152,7 +196,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" (click)="addStudent()" class="btn btn-success" data-bs-dismiss="modal">Add</button>
+          <button type="button" [disabled]="userForm.invalid" (click)="addStudent()" class="btn btn-success" data-bs-dismiss="modal">Add</button>
         </div>
       </div>
     </div>
@@ -172,79 +216,120 @@
             <div class="col-xl mx-auto m-3">
                 <div class="">
                     <div class="">
-                        <form>
+                        <form #userForm="ngForm" (onSubmit)="userForm.value">
                             <div class="input-group form-group p-2">
                               <div class="input-group-prepend">
                                   <span class="input-group-text">Student ID</span>
                               </div>
-                              <input type="number" class="form-control" [(ngModel)]="student.studentId" name="studentId" placeholder="Enter First Name">
+                              <input type="number" class="form-control" readonly [(ngModel)]="student.studentId" name="studentId" placeholder="Enter First Name">
                             </div>
+
+                            <article class="text-danger mx-3" *ngIf="firstname.errors?.required && firstname.touched">Enter First Name</article>
                             <div class="input-group form-group p-2">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text">First Name</span>
+                                    <span class="input-group-text">First Name 
+                                      <span class="text-danger" *ngIf="firstname.errors?.required && firstname.untouched">*</span>
+                                    </span>
                                 </div>
-                                <input type="text" class="form-control" [(ngModel)]="student.firstname" name="firstname" placeholder="Enter First Name">
+                                <input type="text" class="form-control" #firstname="ngModel" required [(ngModel)]="student.firstname" name="firstname" placeholder="Enter First Name">
                                 
                             </div>
+
+                            <article class="text-danger mx-3" *ngIf="lastname.errors?.required && lastname.touched">Enter Last Name</article>
                             <div class="input-group form-group p-2">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text">Last Name</span>
+                                    <span class="input-group-text">Last Name 
+                                      <span class="text-danger" *ngIf="lastname.errors?.required && lastname.untouched">*</span>
+                                    </span>
                                 </div>
-                                <input type="text" class="form-control" [(ngModel)]="student.lastname" name="lastname" placeholder="Enter Last Name">
+                                <input type="text" class="form-control" #lastname="ngModel" required [(ngModel)]="student.lastname" name="lastname" placeholder="Enter Last Name">
                                 
                             </div>
+
+
+                            <article class="text-danger mx-3" *ngIf="age.errors?.required && age.touched">Enter Age</article>
                             <div class="input-group form-group p-2">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text">Age</span>
+                                    <span class="input-group-text">Age 
+                                      <span class="text-danger" *ngIf="age.errors?.required && age.untouched">*</span>
+                                    </span>
                                 </div>
-                                <input type="number" class="form-control" [(ngModel)]="student.age" name="age" placeholder="Enter Age">
+                                <input type="number" class="form-control" required #age="ngModel" [(ngModel)]="student.age" name="age" placeholder="Enter Age">
                                 
                             </div>
                             
                             <div class="input-group form-group p-2">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" [(ngModel)]="student.gender" value="Male" name="gender" id="flexRadioDefault1">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">Gender 
+                                    <span class="text-danger" *ngIf="gender.errors?.required && gender.untouched">*</span>
+                                  </span>
+                                </div>
+                                <div class="form-check mx-3">
+                                    <input class="form-check-input" type="radio" required #gender="ngModel" [(ngModel)]="student.gender" value="Male" name="gender" id="flexRadioDefault1">
                                     <label class="form-check-label" for="flexRadioDefault1">
                                       Male
                                     </label>
                                 </div>
                                 <div class="form-check" style="margin-left: 1rem;">
-                                    <input class="form-check-input" type="radio" [(ngModel)]="student.gender" value="Female" name="gender" id="flexRadioDefault2">
+                                    <input class="form-check-input" type="radio" required #gender="ngModel" [(ngModel)]="student.gender" value="Female" name="gender" id="flexRadioDefault2">
                                     <label class="form-check-label" for="flexRadioDefault2">
                                       Female
                                     </label>
                                 </div>
+
+                                <div class="form-check" style="margin-left: 1rem;">
+                                  <input class="form-check-input" type="radio" required #gender="ngModel" [(ngModel)]="student.gender" value="Others" name="gender" id="flexRadioDefault3">
+                                  <label class="form-check-label" for="flexRadioDefault3">
+                                    Others
+                                  </label>
+                              </div>
                                 
                             </div>
 
+                            <article class="text-danger mx-3" *ngIf="dor.errors?.required && dor.touched">Enter Date</article>
                             <div class="input-group form-group p-2">
                               <div class="input-group-prepend">
-                                  <span class="input-group-text">Date of Registration</span>
+                                  <span class="input-group-text">Date of Registration 
+                                    <span class="text-danger" *ngIf="dor.errors?.required && dor.untouched">*</span>
+                                  </span>
                               </div>
-                              <input type="date" class="form-control" [(ngModel)]="student.registerDate" name="registerDate" placeholder="Enter Password">
-                              
+                              <input type="date" id="date" class="form-control" required #dor="ngModel" [(ngModel)]="student.registerDate" name="registerDate" placeholder="Enter Password">
+        
                             </div>
         
+                            <article class="text-danger mx-3" *ngIf="phone.errors?.pattern && phone.touched">Enter Valid Phone Number</article>
+                            <article class="text-danger mx-3" *ngIf="phone.errors?.required && phone.touched">Enter Phone Number</article>
                             <div class="input-group form-group p-2">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text">Phone</span>
+                                    <span class="input-group-text">Phone 
+                                      <span class="text-danger" *ngIf="phone.errors?.required && phone.untouched">*</span>
+                                    </span>
                                 </div>
-                                <input type="text" class="form-control" [(ngModel)]="student.phone" name="phone" placeholder="Enter Phone Number">
+                                <input type="text" class="form-control" required pattern="[6-9]{1}[0-9]{9}" #phone="ngModel" [(ngModel)]="student.phone" name="phone" placeholder="Enter Phone Number">
                                 
                             </div>
         
+                            <article class="text-danger mx-3" *ngIf="email.errors?.pattern && email.touched">Enter Valid Email ID</article>
+                            <article class="text-danger mx-3" *ngIf="email.errors?.required && email.touched">Enter Email ID</article>
                             <div class="input-group form-group p-2">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text">Email ID</span>
+                                    <span class="input-group-text">Email ID 
+                                      <span class="text-danger" *ngIf="email.errors?.required && email.untouched">*</span>
+                                    </span>
                                 </div>
-                                <input type="email" class="form-control" [(ngModel)]="student.email" name="email" placeholder="Enter Mail Address">
+                                <input type="email" class="form-control" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" #email="ngModel" [(ngModel)]="student.email" name="email" placeholder="Enter Mail Address">
                                 
                             </div>
+
+                            <article class="text-danger mx-3" *ngIf="password.errors?.pattern && password.touched">Enter a strong Password(min 8 chars, atleast one Caps,small and number)</article>
+                            <article class="text-danger mx-3" *ngIf="password.errors?.required && password.touched">Enter password</article>        
                             <div class="input-group form-group p-2">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text">Password</span>
+                                    <span class="input-group-text">Password 
+                                      <span class="text-danger" *ngIf="password.errors?.required && password.untouched">*</span>
+                                    </span>
                                 </div>
-                                <input type="password" class="form-control" [(ngModel)]="student.password" name="password" placeholder="Enter Password">
+                                <input type="text" class="form-control" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" #password="ngModel" [(ngModel)]="student.password" name="password" placeholder="Enter Password">
                                 
                             </div>
                             <!-- <div class="input-group form-group p-2">
@@ -995,8 +1080,9 @@
                
             </div>
         </div>
-        <div class="col py-3" style="margin-top: 10rem;">
-            <div class="row m-3 mt-5">
+        <div class="col py-3" style="margin-top: 4rem;">
+            <img src="assets/cimg1.jpg" class="w-100">
+          <!-- <div class="row m-3 mt-5">
                 <div class="col-xl-6">
                     <div class="card border-left-primary bg-success bg-gradient shadow h-100 py-2" data-bs-toggle="modal" data-bs-target="#studentCRUDModal">
                         <div class="card-body text-center">
@@ -1034,7 +1120,7 @@
                 </div>
             
                 
-            </div>
+            </div> -->
         </div>
     </div>
   </div>

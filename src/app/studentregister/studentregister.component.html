@@ -53,7 +53,9 @@
                     <article class="text-danger mx-3" *ngIf="firstname.errors?.required && firstname.touched">Enter First Name</article>
                     <div class="input-group form-group p-2">
                         <div class="input-group-prepend">
-                            <span class="input-group-text">First Name <span class="text-danger" *ngIf="firstname.errors?.required && firstname.untouched">*</span></span>
+                            <span class="input-group-text">First Name 
+                              <span class="text-danger" *ngIf="firstname.errors?.required && firstname.untouched">*</span>
+                            </span>
                             
                         </div>
                         <input type="text" class="form-control" id="firstname" #firstname="ngModel" required [(ngModel)]="studentDetails.firstname" name="firstname" placeholder="Enter First Name">

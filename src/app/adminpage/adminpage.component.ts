@@ -14,6 +14,7 @@ import { TeacherService } from '../teacher.service';
 })
 export class AdminpageComponent implements OnInit {
 
+  myDate : any = new Date();
   constructor(
     public studentAPI : StudentService,
     public teacherAPI : TeacherService,
@@ -87,6 +88,18 @@ export class AdminpageComponent implements OnInit {
     }
   }
 
+  validateStudent() {
+    var course = this.studentDetails.course.courseId;
+    if(course==""){
+      alert("Please select a Course");
+      return false;
+    }
+    else{
+      return true;
+    }
+
+  }
+
   addTeacher() {
     // document.getElementById("listTeacherModal").classList.add("show");
     // alert("Teacher added!!!");
@@ -128,8 +141,14 @@ export class AdminpageComponent implements OnInit {
   //student
 
   addStudent() {
-    this.studentAPI.addStudent(this.studentDetails).subscribe();
-    document.getElementById("openStudentList").click();
+  
+    if(this.validateStudent()){
+      if(window.confirm('Are you sure, you want to add student?')){
+        this.studentAPI.addStudent(this.studentDetails).subscribe();
+        this.getStudents();
+        document.getElementById("openStudentList").click();
+      }
+    }
   }
 
   getStudents(){
@@ -199,9 +218,13 @@ export class AdminpageComponent implements OnInit {
   // course
 
   addCourse() {
-    this.courseAPI.addCourse(this.courseDetails).subscribe();
     
-    document.getElementById("openCourseList").click();
+    if(window.confirm('Are you sure, you want to Add Fee?')){
+      this.courseAPI.addCourse(this.courseDetails).subscribe();
+      this.getCourses();
+      document.getElementById("openCourseList").click();
+    }
+
   }
 
   getCourses(){
