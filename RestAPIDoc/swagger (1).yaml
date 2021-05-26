@@ -1,0 +1,736 @@
+swagger: '2.0'
+info:
+  description: Api Documentation
+  version: '1.0'
+  title: Api Documentation
+  termsOfService: 'urn:tos'
+  contact: {}
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0'
+host: 'localhost:8080'
+basePath: /SMSProjSpringMVC
+tags:
+  - name: course-rest-controller
+    description: Course Rest Controller
+  - name: fee-rest-controller
+    description: Fee Rest Controller
+  - name: student-rest-controller
+    description: Student Rest Controller
+  - name: teacher-rest-controller
+    description: Teacher Rest Controller
+schemes:
+  - "https"
+  - "http"
+paths:
+  '/course/delete/{id}':
+    delete:
+      tags:
+        - course-rest-controller
+      summary: deleteCourse
+      operationId: deleteCourseUsingDELETE
+      produces:
+        - '*/*'
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Course'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /course/getlist:
+    get:
+      tags:
+        - course-rest-controller
+      summary: allCourse
+      operationId: allCourseUsingGET
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Course'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  '/course/getrecord/{id}':
+    get:
+      tags:
+        - course-rest-controller
+      summary: getCourse
+      operationId: getCourseUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Course'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /course/insert:
+    post:
+      tags:
+        - course-rest-controller
+      summary: createCourse
+      operationId: createCourseUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - in: body
+          name: course
+          description: course
+          required: true
+          schema:
+            $ref: '#/definitions/Course'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Course'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /course/update:
+    put:
+      tags:
+        - course-rest-controller
+      summary: updateCourse
+      operationId: updateCourseUsingPUT
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - in: body
+          name: course
+          description: course
+          required: true
+          schema:
+            $ref: '#/definitions/Course'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Course'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  '/fee/delete/{id}':
+    delete:
+      tags:
+        - fee-rest-controller
+      summary: deleteFee
+      operationId: deleteFeeUsingDELETE
+      produces:
+        - '*/*'
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Fee'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /fee/getlist:
+    get:
+      tags:
+        - fee-rest-controller
+      summary: allFee
+      operationId: allFeeUsingGET
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Fee'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  '/fee/getrecord/{id}':
+    get:
+      tags:
+        - fee-rest-controller
+      summary: getFee
+      operationId: getFeeUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Fee'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /fee/insert:
+    post:
+      tags:
+        - fee-rest-controller
+      summary: createFee
+      operationId: createFeeUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - in: body
+          name: fee
+          description: fee
+          required: true
+          schema:
+            $ref: '#/definitions/Fee'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Fee'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /fee/update:
+    put:
+      tags:
+        - fee-rest-controller
+      summary: updateFee
+      operationId: updateFeeUsingPUT
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - in: body
+          name: fee
+          description: fee
+          required: true
+          schema:
+            $ref: '#/definitions/Fee'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Fee'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /fee/updatezero:
+    put:
+      tags:
+        - fee-rest-controller
+      summary: updateFeeWhereZero
+      operationId: updateFeeWhereZeroUsingPUT
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Fee'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  '/student/delete/{id}':
+    delete:
+      tags:
+        - student-rest-controller
+      summary: deleteStudent
+      operationId: deleteStudentUsingDELETE
+      produces:
+        - '*/*'
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Student'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /student/getlist:
+    get:
+      tags:
+        - student-rest-controller
+      summary: allStudent
+      operationId: allStudentUsingGET
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Student'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  '/student/getrecord/{id}':
+    get:
+      tags:
+        - student-rest-controller
+      summary: getStudent
+      operationId: getStudentUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Student'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /student/insert:
+    post:
+      tags:
+        - student-rest-controller
+      summary: createStudent
+      operationId: createStudentUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - in: body
+          name: student
+          description: student
+          required: true
+          schema:
+            $ref: '#/definitions/Student'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Student'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /student/update:
+    put:
+      tags:
+        - student-rest-controller
+      summary: updateStudent
+      operationId: updateStudentUsingPUT
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - in: body
+          name: student
+          description: student
+          required: true
+          schema:
+            $ref: '#/definitions/Student'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Student'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  '/student/validate/email={email}&password={password}':
+    get:
+      tags:
+        - student-rest-controller
+      summary: validateStudent
+      operationId: validateStudentUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: email
+          in: path
+          description: email
+          required: true
+          type: string
+        - name: password
+          in: path
+          description: password
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Student'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  '/teacher/delete/{id}':
+    delete:
+      tags:
+        - teacher-rest-controller
+      summary: deleteTeacher
+      operationId: deleteTeacherUsingDELETE
+      produces:
+        - '*/*'
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Teacher'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /teacher/getlist:
+    get:
+      tags:
+        - teacher-rest-controller
+      summary: allTeacher
+      operationId: allTeacherUsingGET
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Teacher'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  '/teacher/getrecord/{id}':
+    get:
+      tags:
+        - teacher-rest-controller
+      summary: getTeacher
+      operationId: getTeacherUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Teacher'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /teacher/insert:
+    post:
+      tags:
+        - teacher-rest-controller
+      summary: createTeacher
+      operationId: createTeacherUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - in: body
+          name: teacher
+          description: teacher
+          required: true
+          schema:
+            $ref: '#/definitions/Teacher'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Teacher'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /teacher/update:
+    put:
+      tags:
+        - teacher-rest-controller
+      summary: updateTeacher
+      operationId: updateTeacherUsingPUT
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - in: body
+          name: teacher
+          description: teacher
+          required: true
+          schema:
+            $ref: '#/definitions/Teacher'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Teacher'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+definitions:
+  Course:
+    type: object
+    properties:
+      courseId:
+        type: integer
+        format: int32
+      courseName:
+        type: string
+      course_duration_months:
+        type: integer
+        format: int32
+      fee:
+        $ref: '#/definitions/Fee'
+      teacher:
+        $ref: '#/definitions/Teacher'
+    title: Course
+  Fee:
+    type: object
+    properties:
+      feeAmount:
+        type: integer
+        format: int32
+      feeId:
+        type: integer
+        format: int32
+      paymentMode:
+        type: string
+    title: Fee
+  Student:
+    type: object
+    properties:
+      age:
+        type: integer
+        format: int32
+      course:
+        $ref: '#/definitions/Course'
+      email:
+        type: string
+      firstname:
+        type: string
+      gender:
+        type: string
+      lastname:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+      registerDate:
+        type: string
+        format: date-time
+      studentId:
+        type: integer
+        format: int32
+    title: Student
+  Teacher:
+    type: object
+    properties:
+      age:
+        type: integer
+        format: int32
+      email:
+        type: string
+      firstname:
+        type: string
+      gender:
+        type: string
+      lastname:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+      teacherId:
+        type: integer
+        format: int32
+    title: Teacher
